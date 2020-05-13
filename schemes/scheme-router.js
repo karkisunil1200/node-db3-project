@@ -38,7 +38,9 @@ router.get('/:id/steps', (req, res) => {
       if (steps.length) {
         res.json(steps);
       } else {
-        res.status(404).json({message: 'Could not find steps for given scheme'});
+        res
+          .status(404)
+          .json({message: 'Could not find steps for given scheme', error: err.message});
       }
     })
     .catch(err => {
@@ -73,7 +75,7 @@ router.post('/:id/steps', (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({message: 'Failed to create new step'});
+      res.status(500).json({message: 'Failed to create new step', error: err.message});
     });
 });
 
